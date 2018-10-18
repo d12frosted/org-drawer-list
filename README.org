@@ -1,0 +1,33 @@
+* =org-drawer-list=
+
+[[http://spacemacs.org][file:https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]] [[CircleCI][file:https://circleci.com/gh/d12frosted/org-drawer-list.svg?style=svg]]
+
+Small utility program for dealing with lists in an =org-mode= drawer.
+
+More information will be available soon™, once the initial development is over.
+
+** Testing
+
+Ideally, you should use [[http://cask.readthedocs.io/en/latest/][Cask]] for running tests. So first you need to install
+=cask=. If you are using [[https://github.com/d12frosted/homebrew-emacs-plus][emacs-plus]], then you need to ignore dependencies during
+=cask= installation.
+
+#+BEGIN_SRC bash
+  $ brew install cask --ignore-dependencies
+#+END_SRC
+
+One you have =cask=, you need to install all dependencies.
+
+#+BEGIN_SRC bash
+  $ cask install
+#+END_SRC
+
+Now you can run tests.
+
+#+BEGIN_SRC bash
+  $ cask exec ert-runner
+#+END_SRC
+
+** Contributing
+Let me know if you have any issues, ideas or proposals. Pull requests are
+welcome!
