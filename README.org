@@ -1,6 +1,6 @@
 * =org-drawer-list=
 
-[[http://spacemacs.org][file:https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]] [[CircleCI][file:https://circleci.com/gh/d12frosted/org-drawer-list.svg?style=svg]]
+[[http://spacemacs.org][file:https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]] [[https://circleci.com/gh/d12frosted/org-drawer-list][file:https://circleci.com/gh/d12frosted/org-drawer-list.svg?style=svg]]
 
 Small utility program for dealing with lists in an =org-mode= drawer.
 
