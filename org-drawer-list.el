@@ -67,7 +67,8 @@ Example result with INSIDE being non-nil:
          (setq beg (line-beginning-position))
          (goto-char beg)
          (when (search-forward-regexp drawer-end-regexp bound t)
-           (forward-line)
+           (unless inside
+             (forward-line))
            (setq end (line-beginning-position))))
        (if (and (not (null beg))
                 (not (null end)))

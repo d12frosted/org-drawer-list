@@ -10,8 +10,20 @@
 (add-to-list 'load-path ".")
 (load "org-drawer-list.el")
 
-(defmacro make-test (name input drawer-name drawer-name-case point-location)
-  `(ert-deftest ,(make-test-name name drawer-name-case point-location) ()
+(defmacro make-test (name
+                     input
+                     drawer-name
+                     drawer-name-case
+                     point-location
+                     create-when-absent
+                     inside)
+  `(ert-deftest
+       ,(make-test-name name
+                        drawer-name-case
+                        point-location
+                        create-when-absent
+                        inside)
+       ()
      (with-temp-buffer
        (org-mode)
        (insert (string-join ',input "\n"))
@@ -24,14 +36,30 @@
                ('lower (downcase ,drawer-name))
                ('upper (upcase ,drawer-name))
                ('random (randomcase ,drawer-name))))
-       (should (equal (get-block-range)
-                      (org-drawer-list-block ,drawer-name nil nil))))))
+       (should (equal (if ,inside
+                          (progn
+                            (get-block-range "<" ">")
+                            (get-block-range "≤" "≥"))
+                        (progn
+                          (get-block-range "≤" "≥")
+                          (get-block-range "<" ">")))
+                      (org-drawer-list-block ,drawer-name nil ,inside))))))
 
-(defun make-test-name (name drawer-name-case point-location)
-  (intern (format "org-drawer-list|%s|%s-case|point-at-%s|test"
+(defun make-test-name (name
+                       drawer-name-case
+                       point-location
+                       create-when-absent
+                       inside)
+  (intern (format "org-drawer-list|%s|%s-case|point-at-%s|%s|%s|test"
                   (symbol-name name)
                   (symbol-name drawer-name-case)
-                  (symbol-name point-location))))
+                  (symbol-name point-location)
+                  (if create-when-absent
+                      "create-when-absent"
+                    "ignore-when-absent")
+                  (if inside
+                      "inside"
+                    "outside"))))
 
 (defun place-cursor-beginning ()
   (let ((p0 (get-position-of "{"))
@@ -48,11 +76,9 @@
         (p1 (get-position-of "}")))
     (goto-char (+ p0 (random (- p1 p0))))))
 
-(defun get-block-range ()
-  (let ((bchar "<")
-        (echar ">"))
-    (cons (get-position-of bchar)
-          (get-position-of echar))))
+(defun get-block-range (bchar echar)
+  (cons (get-position-of bchar)
+        (get-position-of echar)))
 
 (defun get-position-of (str)
   (save-excursion
