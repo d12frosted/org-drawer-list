@@ -10,7 +10,7 @@
 ;; Homepage: https://github.com/d12frosted/org-drawer-list
 
 ;; Package-Version: 0.0.1
-;; Package-Requires: ((org "9.1.0"))
+;; Package-Requires: ((org "9.1.0") (emacs "25.1"))
 
 ;; This file is not part of GNU Emacs.
 ;;; License: GPLv3
