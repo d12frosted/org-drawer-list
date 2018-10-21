@@ -43,7 +43,10 @@
                         (progn
                           (get-block-range "≤" "≥")
                           (get-block-range "<" ">")))
-                      (org-drawer-list-block ,drawer-name nil ,inside))))))
+                      (org-drawer-list-block
+                       ,drawer-name
+                       ,create-when-absent
+                       ,inside))))))
 
 (defun make-test-name (name
                        drawer-name-case
