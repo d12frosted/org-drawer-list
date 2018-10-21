@@ -15,13 +15,13 @@
                      drawer-name
                      drawer-name-case
                      point-location
-                     create-when-absent
+                     create
                      inside)
   `(ert-deftest
        ,(make-test-name name
                         drawer-name-case
                         point-location
-                        create-when-absent
+                        create
                         inside)
        ()
      (with-temp-buffer
@@ -45,21 +45,21 @@
                           (get-block-range "<" ">")))
                       (org-drawer-list-block
                        ,drawer-name
-                       ,create-when-absent
+                       ,create
                        ,inside))))))
 
 (defun make-test-name (name
                        drawer-name-case
                        point-location
-                       create-when-absent
+                       create
                        inside)
   (intern (format "org-drawer-list|%s|%s-case|point-at-%s|%s|%s|test"
                   (symbol-name name)
                   (symbol-name drawer-name-case)
                   (symbol-name point-location)
-                  (if create-when-absent
-                      "create-when-absent"
-                    "ignore-when-absent")
+                  (if create
+                      "create"
+                    "ignore")
                   (if inside
                       "inside"
                     "outside"))))

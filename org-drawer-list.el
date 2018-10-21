@@ -23,13 +23,12 @@
 
 (require 'org)
 
-(defun org-drawer-list-block (name &optional create-when-absent inside)
+(defun org-drawer-list-block (name &optional create inside)
   "Return the (beg . end) range of the NAME drawer.
 
 NAME is case insensitive.
 
-If CREATE-WHEN-ABSENT is non-nil, create the drawer when it
-doesn't exist.
+If CREATE is non-nil, create the drawer when it doesn't exist.
 
 If INSIDE is non-nil, return the (beg . end) range of the drawers
 body.
@@ -72,7 +71,7 @@ Example result with INSIDE being non-nil:
        (if (and (not (null beg))
                 (not (null end)))
            (cons beg end)
-         (when create-when-absent
+         (when create
            (goto-char (cdr (org-get-property-block)))
            (forward-line 1)
            (open-line 1)

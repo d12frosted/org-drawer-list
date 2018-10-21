@@ -1,5 +1,5 @@
 (cl-loop
- for (drawer-name-case point-location create-when-absent inside)
+ for (drawer-name-case point-location create inside)
  in (reduce #'cartesian-product '((lower upper random)
                                   (beginning end random)
                                   (t nil)
@@ -7,7 +7,7 @@
  do
  (eval
   `(progn
-     (if ,create-when-absent
+     (if ,create
          (make-test no-drawer
                     ("{* Some heading"
                      ":PROPERTIES:"
@@ -19,7 +19,7 @@
                     "RESOURCES"
                     ,drawer-name-case
                     ,point-location
-                    ,create-when-absent
+                    ,create
                     ,inside
                     )
        (make-test no-drawer
@@ -31,7 +31,7 @@
                     "RESOURCES"
                     ,drawer-name-case
                     ,point-location
-                    ,create-when-absent
+                    ,create
                     ,inside
                     ))
      (make-test empty-drawer+upper-case
@@ -45,7 +45,7 @@
                 "RESOURCES"
                 ,drawer-name-case
                 ,point-location
-                ,create-when-absent
+                ,create
                 ,inside
                 )
      (make-test empty-drawer+lower-case
@@ -59,7 +59,7 @@
                 "RESOURCES"
                 ,drawer-name-case
                 ,point-location
-                ,create-when-absent
+                ,create
                 ,inside
                 )
      (make-test empty-drawer+random-case
@@ -73,7 +73,7 @@
                 "RESOURCES"
                 ,drawer-name-case
                 ,point-location
-                ,create-when-absent
+                ,create
                 ,inside
                 )
      (make-test drawer-1
@@ -88,7 +88,7 @@
                 "RESOURCES"
                 ,drawer-name-case
                 ,point-location
-                ,create-when-absent
+                ,create
                 ,inside
                 )
      (make-test drawer-many
@@ -105,6 +105,6 @@
                 "RESOURCES"
                 ,drawer-name-case
                 ,point-location
-                ,create-when-absent
+                ,create
                 ,inside
                 ))))
