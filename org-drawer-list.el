@@ -81,7 +81,7 @@ Example result with INSIDE being non-nil:
            (insert ":" name ":\n")
            (indent-for-tab-command)
            (insert ":END:")
-           (org-drawer-list--block name nil inside)))))))
+           (org-drawer-list-block name nil inside)))))))
 
 (defmacro org-drawer-list--with-entry (&rest body)
   "Move to buffer and point of current entry for the duration of BODY."

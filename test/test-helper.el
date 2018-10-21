@@ -80,8 +80,10 @@
     (goto-char (+ p0 (random (- p1 p0))))))
 
 (defun get-block-range (bchar echar)
-  (cons (get-position-of bchar)
-        (get-position-of echar)))
+  (condition-case nil
+      (cons (get-position-of bchar)
+            (get-position-of echar))
+    (error nil)))
 
 (defun get-position-of (str)
   (save-excursion
