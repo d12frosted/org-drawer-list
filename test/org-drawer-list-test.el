@@ -107,4 +107,40 @@
                 ,point-location
                 ,create
                 ,inside
+                )
+     (make-test multiple-headers
+                ("* Random first header"
+                 ":PROPERTIES:"
+                 ":ID: EADF0BAA-D51F-11E8-A3DB-80E650001438"
+                 ":END:"
+                 ":RESOURCES:"
+                 "- wrong-element-1"
+                 "- wrong-element-2"
+                 "- wrong-element-3"
+                 ":END:"
+                 ""
+                 "{* Some heading"
+                 ":PROPERTIES:"
+                 ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                 ":END:"
+                 "<:RESOURCES:"
+                 "≤- element-1"
+                 "- element-2"
+                 "- element-3"
+                 "≥:END:"
+                 ">}"
+                 "* Random last header"
+                 ":PROPERTIES:"
+                 ":ID: EADF0BAA-D51F-11E8-A3DB-80E650001438"
+                 ":END:"
+                 ":RESOURCES:"
+                 "- wrong-element-4"
+                 "- wrong-element-5"
+                 ":END:"
+                 "")
+                "RESOURCES"
+                ,drawer-name-case
+                ,point-location
+                ,create
+                ,inside
                 ))))
