@@ -48,12 +48,11 @@ Example result with INSIDE being non-nil:
 |- val1
 - val2
 |:END:"
-  (setq name (downcase name))
   (org-drawer-list--with-entry
    (unless (org-before-first-heading-p)
      (org-back-to-heading t)
      (end-of-line)
-     (let* ((drawer-beg-regexp (concat "^[ \t]*:" name ":[ \t]*$"))
+     (let* ((drawer-beg-regexp (concat "^[ \t]*:" (downcase name) ":[ \t]*$"))
             (drawer-end-regexp "^[ \t]*:end:[ \t]*$")
             (bound (save-excursion
                      (if (search-forward-regexp org-heading-regexp nil t)
@@ -78,7 +77,7 @@ Example result with INSIDE being non-nil:
            (forward-line 1)
            (open-line 1)
            (indent-for-tab-command)
-           (insert ":" name ":\n")
+           (insert ":" (upcase name) ":\n")
            (indent-for-tab-command)
            (insert ":END:")
            (org-drawer-list-block name nil inside)))))))
