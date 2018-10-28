@@ -13,6 +13,7 @@
 (defmacro make-test (name
                      input
                      drawer-name
+                     result
                      drawer-name-case
                      point-location
                      create
@@ -46,7 +47,11 @@
                       (org-drawer-list-block
                        ,drawer-name
                        ,create
-                       ,inside))))))
+                       ,inside)))
+       (should (equal ,(if (null result)
+                           nil
+                         `',result)
+                      (org-drawer-list ,drawer-name))))))
 
 (defun make-test-name (name
                        drawer-name-case

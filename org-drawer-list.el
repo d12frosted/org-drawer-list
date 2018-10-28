@@ -23,6 +23,23 @@
 
 (require 'org)
 
+(defconst org-drawer-list-prefix "- "
+  "Prefix for list elements.")
+
+(defun org-drawer-list (name)
+  "Return the content of the NAME drawer as list."
+  (org-drawer-list--with-entry
+   (when-let ((range (org-drawer-list-block name nil t)))
+     (seq-map
+      (lambda (str)
+        (string-remove-prefix org-drawer-list-prefix str))
+      (seq-filter
+       (lambda (str)
+         (not (string-empty-p str)))
+       (split-string
+        (buffer-substring-no-properties (car range) (cdr range))
+        "\n"))))))
+
 (defun org-drawer-list-block (name &optional create inside)
   "Return the (beg . end) range of the NAME drawer.
 

@@ -17,23 +17,25 @@
                      "≤≥     "
                      ">}")
                     "RESOURCES"
+                    nil
                     ,drawer-name-case
                     ,point-location
                     ,create
                     ,inside
                     )
        (make-test no-drawer
-                    ("{* Some heading"
-                     ":PROPERTIES:"
-                     ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
-                     ":END:"
-                     "}")
-                    "RESOURCES"
-                    ,drawer-name-case
-                    ,point-location
-                    ,create
-                    ,inside
-                    ))
+                  ("{* Some heading"
+                   ":PROPERTIES:"
+                   ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                   ":END:"
+                   "}")
+                  "RESOURCES"
+                  nil
+                  ,drawer-name-case
+                  ,point-location
+                  ,create
+                  ,inside
+                  ))
      (make-test empty-drawer+upper-case
                 ("{* Some heading"
                  ":PROPERTIES:"
@@ -43,6 +45,7 @@
                  "≤≥:END:"
                  ">}")
                 "RESOURCES"
+                nil
                 ,drawer-name-case
                 ,point-location
                 ,create
@@ -57,6 +60,7 @@
                  "≤≥:end:"
                  ">}")
                 "RESOURCES"
+                nil
                 ,drawer-name-case
                 ,point-location
                 ,create
@@ -71,6 +75,7 @@
                  "≤≥:eNd:"
                  ">}")
                 "RESOURCES"
+                nil
                 ,drawer-name-case
                 ,point-location
                 ,create
@@ -86,6 +91,7 @@
                  "≥:END:"
                  ">}")
                 "RESOURCES"
+                ("element1")
                 ,drawer-name-case
                 ,point-location
                 ,create
@@ -103,6 +109,9 @@
                  "≥:END:"
                  ">}")
                 "RESOURCES"
+                ("element1"
+                 "element2"
+                 "element3")
                 ,drawer-name-case
                 ,point-location
                 ,create
@@ -124,9 +133,8 @@
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
                  ":END:"
                  "<:RESOURCES:"
-                 "≤- element-1"
-                 "- element-2"
-                 "- element-3"
+                 "≤- element1"
+                 "- element2"
                  "≥:END:"
                  ">}"
                  "* Random last header"
@@ -139,6 +147,8 @@
                  ":END:"
                  "")
                 "RESOURCES"
+                ("element1"
+                 "element2")
                 ,drawer-name-case
                 ,point-location
                 ,create
