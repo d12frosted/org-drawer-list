@@ -133,7 +133,8 @@
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
                  ":END:"
                  "<:RESOURCES:"
-                 "≤- element1"
+                 "≤- element1 is a multiple"
+                 "  lines element"
                  "- element2"
                  "≥:END:"
                  ">}"
@@ -147,7 +148,7 @@
                  ":END:"
                  "")
                 "RESOURCES"
-                ("element1"
+                ("element1 is a multiple lines element"
                  "element2")
                 ,drawer-name-case
                 ,point-location
