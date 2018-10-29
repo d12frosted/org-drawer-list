@@ -69,6 +69,24 @@
                       "inside"
                     "outside"))))
 
+(defmacro make-add-test (name
+                         input
+                         drawer-name
+                         elements-to-add
+                         result)
+  `(ert-deftest
+       ,(intern (format "org-drawer-list-add|%s|test" name))
+       ()
+     (with-temp-buffer
+       (org-mode)
+       (insert (string-join ',input "\n"))
+       (seq-map (lambda (value) (org-drawer-list-add ,drawer-name value))
+                ',elements-to-add)
+       (should (equal ,(if (null result)
+                           nil
+                         `',result)
+                      (org-drawer-list ,drawer-name))))))
+
 (defun place-cursor-beginning ()
   (let ((p0 (get-position-of "{"))
         (p1 (get-position-of "}")))

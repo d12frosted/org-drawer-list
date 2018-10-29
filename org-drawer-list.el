@@ -23,6 +23,9 @@
 
 (require 'org)
 
+(defvar org-drawer-list-prefix "- "
+  "Prefix for list elements.")
+
 (defun org-drawer-list (name)
   "Return the content of the NAME drawer as list."
   (org-drawer-list--with-entry
@@ -41,6 +44,17 @@
              prefix
              (buffer-substring-no-properties beg end))))))
       (org-element-property :structure (org-element-at-point))))))
+
+(defun org-drawer-list-add (name value)
+  "Add a VALUE to drawer with NAME."
+  (org-drawer-list--with-entry
+   (when-let ((range (org-drawer-list-block name t t)))
+     (goto-char (cdr range))
+     (backward-char)
+     (if (equal (car range) (cdr range))
+         (insert "\n" org-drawer-list-prefix)
+         (org-insert-item))
+     (insert value))))
 
 (defun org-drawer-list-block (name &optional create inside)
   "Return the (beg . end) range of the NAME drawer.

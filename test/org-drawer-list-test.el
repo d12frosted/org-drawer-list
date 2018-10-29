@@ -176,3 +176,55 @@
                 ,create
                 ,inside
                 ))))
+
+(make-add-test unordered-missing
+               ("* Some heading"
+                ":PROPERTIES:"
+                ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                ":END:")
+               "resources"
+               ("element1")
+               ("element1"))
+
+(make-add-test unordered-empty
+               ("* Some heading"
+                ":PROPERTIES:"
+                ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                ":END:"
+                ":RESOURCES:"
+                ":END:")
+               "resources"
+               ("element1")
+               ("element1"))
+
+(make-add-test unordered
+               ("* Some heading"
+                ":PROPERTIES:"
+                ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                ":END:"
+                ":RESOURCES:"
+                "- element1 is a multiple"
+                "  lines element"
+                "- element2"
+                ":END:")
+               "resources"
+               ("element3")
+               ("element1 is a multiple lines element"
+                "element2"
+                "element3"))
+
+(make-add-test ordered
+               ("* Some heading"
+                ":PROPERTIES:"
+                ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                ":END:"
+                ":RESOURCES:"
+                "1. element1 is a multiple"
+                "  lines element"
+                "2. element2"
+                ":END:")
+               "resources"
+               ("element3")
+               ("element1 is a multiple lines element"
+                "element2"
+                "element3"))
