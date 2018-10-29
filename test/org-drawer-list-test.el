@@ -8,7 +8,7 @@
  (eval
   `(progn
      (if ,create
-         (make-test no-drawer
+         (make-list-test no-drawer
                     ("{* Some heading"
                      ":PROPERTIES:"
                      ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
@@ -21,9 +21,8 @@
                     ,drawer-name-case
                     ,point-location
                     ,create
-                    ,inside
-                    )
-       (make-test no-drawer
+                    ,inside)
+       (make-list-test no-drawer
                   ("{* Some heading"
                    ":PROPERTIES:"
                    ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
@@ -34,9 +33,8 @@
                   ,drawer-name-case
                   ,point-location
                   ,create
-                  ,inside
-                  ))
-     (make-test empty-drawer+upper-case
+                  ,inside))
+     (make-list-test empty-drawer+upper-case
                 ("{* Some heading"
                  ":PROPERTIES:"
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
@@ -49,9 +47,8 @@
                 ,drawer-name-case
                 ,point-location
                 ,create
-                ,inside
-                )
-     (make-test empty-drawer+lower-case
+                ,inside)
+     (make-list-test empty-drawer+lower-case
                 ("{* Some heading"
                  ":PROPERTIES:"
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
@@ -64,9 +61,8 @@
                 ,drawer-name-case
                 ,point-location
                 ,create
-                ,inside
-                )
-     (make-test empty-drawer+random-case
+                ,inside)
+     (make-list-test empty-drawer+random-case
                 ("{* Some heading"
                  ":PROPERTIES:"
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
@@ -79,9 +75,8 @@
                 ,drawer-name-case
                 ,point-location
                 ,create
-                ,inside
-                )
-     (make-test drawer-1
+                ,inside)
+     (make-list-test drawer-1
                 ("{* Some heading"
                  ":PROPERTIES:"
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
@@ -95,9 +90,8 @@
                 ,drawer-name-case
                 ,point-location
                 ,create
-                ,inside
-                )
-     (make-test drawer-many
+                ,inside)
+     (make-list-test drawer-many
                 ("{* Some heading"
                  ":PROPERTIES:"
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
@@ -115,9 +109,8 @@
                 ,drawer-name-case
                 ,point-location
                 ,create
-                ,inside
-                )
-     (make-test ordered-list
+                ,inside)
+     (make-list-test ordered-list
                 ("{* Some heading"
                  ":PROPERTIES:"
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
@@ -154,9 +147,8 @@
                 ,drawer-name-case
                 ,point-location
                 ,create
-                ,inside
-                )
-     (make-test multiple-headers
+                ,inside)
+     (make-list-test multiple-headers
                 ("* Random first header"
                  ":PROPERTIES:"
                  ":ID: EADF0BAA-D51F-11E8-A3DB-80E650001438"

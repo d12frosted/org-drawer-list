@@ -10,20 +10,20 @@
 (add-to-list 'load-path ".")
 (load "org-drawer-list.el")
 
-(defmacro make-test (name
-                     input
-                     drawer-name
-                     result
-                     drawer-name-case
-                     point-location
-                     create
-                     inside)
+(defmacro make-list-test (name
+                          input
+                          drawer-name
+                          result
+                          drawer-name-case
+                          point-location
+                          create
+                          inside)
   `(ert-deftest
-       ,(make-test-name name
-                        drawer-name-case
-                        point-location
-                        create
-                        inside)
+       ,(make-list-test-name name
+                             drawer-name-case
+                             point-location
+                             create
+                             inside)
        ()
      (with-temp-buffer
        (org-mode)
@@ -53,11 +53,11 @@
                          `',result)
                       (org-drawer-list ,drawer-name))))))
 
-(defun make-test-name (name
-                       drawer-name-case
-                       point-location
-                       create
-                       inside)
+(defun make-list-test-name (name
+                            drawer-name-case
+                            point-location
+                            create
+                            inside)
   (intern (format "org-drawer-list|%s|%s-case|point-at-%s|%s|%s|test"
                   (symbol-name name)
                   (symbol-name drawer-name-case)
