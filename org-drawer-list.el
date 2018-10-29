@@ -28,8 +28,9 @@
 
 (defun org-drawer-list (name)
   "Return the content of the NAME drawer as list."
-  (org-drawer-list--with-entry
-   (when-let ((range (org-drawer-list-block name nil t)))
+  (org-drawer-list-block
+   name nil t
+   (lambda (range)
      (goto-char (car range))
      (seq-map
       (lambda (struct)
@@ -47,16 +48,18 @@
 
 (defun org-drawer-list-add (name value)
   "Add a VALUE to drawer with NAME."
-  (org-drawer-list--with-entry
-   (when-let ((range (org-drawer-list-block name t t)))
+  (org-drawer-list-block
+   name t t
+   (lambda (range)
      (goto-char (cdr range))
      (backward-char)
      (if (equal (car range) (cdr range))
          (insert "\n" org-drawer-list-prefix)
-         (org-insert-item))
-     (insert value))))
+       (org-insert-item))
+     (insert value)
+     value)))
 
-(defun org-drawer-list-block (name &optional create inside)
+(defun org-drawer-list-block (name &optional create inside body)
   "Return the (beg . end) range of the NAME drawer.
 
 NAME is case insensitive.
@@ -102,7 +105,9 @@ Example result with INSIDE being non-nil:
                        (line-end-position)))))
        (if (and (not (null beg))
                 (not (null end)))
-           (cons beg end)
+           (if body
+               (funcall body (cons beg end))
+             (cons beg end))
          (when create
            (if-let ((property-block (org-get-property-block)))
                (goto-char (cdr property-block))
@@ -114,7 +119,7 @@ Example result with INSIDE being non-nil:
            (insert ":" (upcase name) ":\n")
            (indent-for-tab-command)
            (insert ":END:")
-           (org-drawer-list-block name nil inside)))))))
+           (org-drawer-list-block name nil inside body)))))))
 
 (defmacro org-drawer-list--with-entry (&rest body)
   "Move to buffer and point of current entry for the duration of BODY."
