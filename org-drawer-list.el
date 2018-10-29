@@ -91,8 +91,9 @@ Example result with INSIDE being non-nil:
            (cons beg end)
          (when create
            (goto-char (cdr (org-get-property-block)))
-           (forward-line 1)
+           (end-of-line)
            (open-line 1)
+           (forward-line 1)
            (indent-for-tab-command)
            (insert ":" (upcase name) ":\n")
            (indent-for-tab-command)
