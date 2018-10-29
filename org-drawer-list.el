@@ -104,7 +104,9 @@ Example result with INSIDE being non-nil:
                 (not (null end)))
            (cons beg end)
          (when create
-           (goto-char (cdr (org-get-property-block)))
+           (if-let ((property-block (org-get-property-block)))
+               (goto-char (cdr property-block))
+             (org-back-to-heading t))
            (end-of-line)
            (open-line 1)
            (forward-line 1)

@@ -186,6 +186,12 @@
                ("element1")
                ("element1"))
 
+(make-add-test unordered-missing|no-properties
+               ("* Some heading")
+               "resources"
+               ("element1")
+               ("element1"))
+
 (make-add-test unordered-empty
                ("* Some heading"
                 ":PROPERTIES:"
