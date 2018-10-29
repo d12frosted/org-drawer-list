@@ -59,6 +59,38 @@
      (insert value)
      value)))
 
+(defun org-drawer-list-remove (name value)
+  "Add a VALUE to drawer with NAME."
+  (org-drawer-list-block
+   name t t
+   (lambda (range)
+     (goto-char (car range))
+     (seq-length
+      (seq-map
+       (lambda (struct)
+         (let ((beg (car struct))
+               (end (car (last struct))))
+           (delete-region beg end)
+           (beginning-of-line)
+           (ignore-errors
+             (org-ctrl-c-ctrl-c))))
+       (seq-reverse
+        (seq-filter
+         (lambda (struct)
+           (let ((beg (car struct))
+                 (end (- (car (last struct)) 1))
+                 (prefix (nth 2 struct)))
+             (string-match-p
+              value
+              (replace-regexp-in-string
+               "\n" ""
+               (replace-regexp-in-string
+                "^ +" " "
+                (string-remove-prefix
+                 prefix
+                 (buffer-substring-no-properties beg end)))))))
+         (org-element-property :structure (org-element-at-point)))))))))
+
 (defun org-drawer-list-block (name &optional create inside body)
   "Return the (beg . end) range of the NAME drawer.
 

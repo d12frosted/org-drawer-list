@@ -234,3 +234,67 @@
                ("element1 is a multiple lines element"
                 "element2"
                 "element3"))
+
+(make-remove-test unordered-missing
+                  ("* Some heading"
+                   ":PROPERTIES:"
+                   ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                   ":END:")
+                  "resources"
+                  ("element1")
+                  nil)
+
+(make-remove-test unordered-empty
+                  ("* Some heading"
+                   ":PROPERTIES:"
+                   ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                   ":END:"
+                   ":RESOURCES:"
+                   ":END:")
+                  "resources"
+                  ("element1")
+                  nil)
+
+(make-remove-test unordered-one
+                  ("* Some heading"
+                   ":PROPERTIES:"
+                   ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                   ":END:"
+                   ":RESOURCES:"
+                   "- element1"
+                   ":END:")
+                  "resources"
+                  ("element1")
+                  nil)
+
+(make-remove-test unordered-many
+                  ("* Some heading"
+                   ":PROPERTIES:"
+                   ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                   ":END:"
+                   ":RESOURCES:"
+                   "- element1"
+                   "- element2"
+                   "- element1"
+                   "- element3"
+                   ":END:")
+                  "resources"
+                  ("element1")
+                  ("element2"
+                   "element3"))
+
+(make-remove-test ordered-many
+                  ("* Some heading"
+                   ":PROPERTIES:"
+                   ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                   ":END:"
+                   ":RESOURCES:"
+                   "1. element1"
+                   "2. element2"
+                   "3. element1"
+                   "4. element3"
+                   ":END:")
+                  "resources"
+                  ("element1")
+                  ("element2"
+                   "element3"))
