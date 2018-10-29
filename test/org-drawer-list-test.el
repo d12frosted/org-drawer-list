@@ -14,8 +14,7 @@
                      ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
                      ":END:"
                      "<           "
-                     "≤≥     "
-                     ">}")
+                     "≤≥     >}")
                     "RESOURCES"
                     nil
                     ,drawer-name-case
@@ -26,8 +25,7 @@
                   ("{* Some heading"
                    ":PROPERTIES:"
                    ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
-                   ":END:"
-                   "}")
+                   ":END:}")
                   "RESOURCES"
                   nil
                   ,drawer-name-case
@@ -40,8 +38,7 @@
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
                  ":END:"
                  "<:RESOURCES:"
-                 "≤≥:END:"
-                 ">}")
+                 "≤≥:END:>}")
                 "RESOURCES"
                 nil
                 ,drawer-name-case
@@ -54,8 +51,7 @@
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
                  ":END:"
                  "<:resources:"
-                 "≤≥:end:"
-                 ">}")
+                 "≤≥:end:>}")
                 "RESOURCES"
                 nil
                 ,drawer-name-case
@@ -68,8 +64,7 @@
                  ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
                  ":END:"
                  "<:reSouRceS:"
-                 "≤≥:eNd:"
-                 ">}")
+                 "≤≥:eNd:>}")
                 "RESOURCES"
                 nil
                 ,drawer-name-case
@@ -83,8 +78,7 @@
                  ":END:"
                  "<:RESOURCES:"
                  "≤- element1"
-                 "≥:END:"
-                 ">}")
+                 "≥:END:>}")
                 "RESOURCES"
                 ("element1")
                 ,drawer-name-case
@@ -100,8 +94,7 @@
                  "≤- element1"
                  "- element2"
                  "- element3"
-                 "≥:END:"
-                 ">}")
+                 "≥:END:>}")
                 "RESOURCES"
                 ("element1"
                  "element2"
@@ -129,8 +122,7 @@
                  "    very long element"
                  "11. element11"
                  "12. element12"
-                 "≥:END:"
-                 ">}")
+                 "≥:END:>}")
                 "RESOURCES"
                 ("element1"
                  "element2"
@@ -167,8 +159,7 @@
                  "≤- element1 is a multiple"
                  "  lines element"
                  "- element2"
-                 "≥:END:"
-                 ">}"
+                 "≥:END:>}"
                  "* Random last header"
                  ":PROPERTIES:"
                  ":ID: EADF0BAA-D51F-11E8-A3DB-80E650001438"
@@ -176,8 +167,7 @@
                  ":RESOURCES:"
                  "- wrong-element-4"
                  "- wrong-element-5"
-                 ":END:"
-                 "")
+                 ":END:")
                 "RESOURCES"
                 ("element1 is a multiple lines element"
                  "element2")

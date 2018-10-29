@@ -57,8 +57,7 @@ Example result with INSIDE being nil:
 |:NAME:
 - val1
 - val2
-:END:
-|
+:END:|
 
 Example result with INSIDE being non-nil:
 
@@ -84,9 +83,9 @@ Example result with INSIDE being non-nil:
          (setq beg (line-beginning-position))
          (goto-char beg)
          (when (search-forward-regexp drawer-end-regexp bound t)
-           (unless inside
-             (forward-line))
-           (setq end (line-beginning-position))))
+           (setq end (if inside
+                         (line-beginning-position)
+                       (line-end-position)))))
        (if (and (not (null beg))
                 (not (null end)))
            (cons beg end)
