@@ -24,6 +24,8 @@
 ;; - `org-drawer-list-add' - adds the value to the list under the named drawer.
 ;; - `org-drawer-list-remove' - removes the value from the list under the named
 ;;   drawer.
+;; - `org-drawer-list-contains' - returns first element of the named drawer that
+;;   is equal to a given element.
 ;; - `org-drawer-list-block' - returns the region of the named drawer; when
 ;;   asked creates a missing drawer
 ;;
@@ -112,6 +114,13 @@ used."
                  prefix
                  (buffer-substring-no-properties beg end)))))))
          (org-element-property :structure (org-element-at-point)))))))))
+
+;;;###autoload
+(defun org-drawer-list-contains (name elt &optional testfn)
+  "Return the first element in NAME that is equal to ELT.
+
+Equality is defined by TESTFN if non-nil or by `equal' if nil."
+  (seq-contains (org-drawer-list name) elt (or testfn #'equal)))
 
 ;;;###autoload
 (defun org-drawer-list-block (name &optional create inside body)

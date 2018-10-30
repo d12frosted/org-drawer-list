@@ -9,6 +9,8 @@ library provides the following functions:
 - =org-drawer-list-add= - adds the value to the list under the named drawer;
 - =org-drawer-list-remove= - removes the value from the list under the named
   drawer;
+- =org-drawer-list-contains= - returns first element of the named drawer that is
+  equal to a given element.
 - =org-drawer-list-block= - returns the region of the named drawer; when asked
   creates a missing drawer.
 
@@ -44,6 +46,9 @@ That's where =org-drawer-list= comes to the rescue!
 #+BEGIN_SRC emacs-lisp
   (org-drawer-list "resources")
   ;; => ("resource one" "resource two")
+
+  (org-drawer-list "topics")
+  ;; => nil
 #+END_SRC
 
 *** Adding resource
@@ -75,6 +80,19 @@ That's where =org-drawer-list= comes to the rescue!
   - resource one
   - resource two
   :END:
+#+END_SRC
+
+*** Contains test
+
+#+BEGIN_SRC emacs-lisp
+  (org-drawer-list-contains "resources" "resource one")
+  ;; => "resource one"
+
+  (org-drawer-list-contains "resources" "i don't exist")
+  ;; => nil
+
+  (org-drawer-list-contains "resources" "one" #'string-suffix-p)
+  ;; => "resource one"
 #+END_SRC
 
 ** Installation

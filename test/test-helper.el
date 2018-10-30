@@ -105,6 +105,21 @@
                          `',result)
                       (org-drawer-list ,drawer-name))))))
 
+(defmacro make-contains-test (name
+                              input
+                              drawer-name
+                              elt
+                              testfn
+                              result)
+  `(ert-deftest
+       ,(intern (format "org-drawer-list-contains|%s|test" name))
+       ()
+     (with-temp-buffer
+       (org-mode)
+       (insert (string-join ',input "\n"))
+       (should (equal ,result
+                      (org-drawer-list-contains ,drawer-name ,elt ,testfn))))))
+
 (defun place-cursor-beginning ()
   (let ((p0 (get-position-of "{"))
         (p1 (get-position-of "}")))

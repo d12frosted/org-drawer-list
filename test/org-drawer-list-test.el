@@ -313,3 +313,55 @@
                   ("element1")
                   ("element2"
                    "element3"))
+
+(make-contains-test missing
+                    ("* Some heading"
+                     ":PROPERTIES:"
+                     ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                     ":END:")
+                    "resources"
+                    "element1"
+                    nil
+                    nil)
+
+(make-contains-test empty
+                    ("* Some heading"
+                     ":PROPERTIES:"
+                     ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                     ":END:"
+                     ":RESOURCES:"
+                     ":END:")
+                    "resources"
+                    "element1"
+                    nil
+                    nil)
+
+(make-contains-test full-simple
+                    ("* Some heading"
+                     ":PROPERTIES:"
+                     ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                     ":END:"
+                     ":RESOURCES:"
+                     "- element1"
+                     "- element2"
+                     "- element3"
+                     ":END:")
+                    "resources"
+                    "element1"
+                    nil
+                    "element1")
+
+(make-contains-test full-complex
+                    ("* Some heading"
+                     ":PROPERTIES:"
+                     ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                     ":END:"
+                     ":RESOURCES:"
+                     "- element1"
+                     "- element2"
+                     "- element3"
+                     ":END:")
+                    "resources"
+                    "1"
+                    'string-suffix-p
+                    "element1")
