@@ -86,7 +86,9 @@
 (defmacro make-remove-test (name
                             input
                             drawer-name
-                            elements-to-remove
+                            elt
+                            testfn
+                            count
                             result)
   `(ert-deftest
        ,(intern (format "org-drawer-list-remove|%s|test" name))
@@ -94,8 +96,8 @@
      (with-temp-buffer
        (org-mode)
        (insert (string-join ',input "\n"))
-       (seq-map (lambda (value) (org-drawer-list-remove ,drawer-name value))
-                ,elements-to-remove)
+       (should (equal ,count
+                      (org-drawer-list-remove ,drawer-name ,elt ,testfn)))
        (should (equal ,result
                       (org-drawer-list ,drawer-name))))))
 

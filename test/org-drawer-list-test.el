@@ -256,7 +256,9 @@
                    ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
                    ":END:")
                   "resources"
-                  '("element1")
+                  "element1"
+                  nil
+                  0
                   nil)
 
 (make-remove-test unordered-empty
@@ -267,7 +269,9 @@
                    ":RESOURCES:"
                    ":END:")
                   "resources"
-                  '("element1")
+                  "element1"
+                  nil
+                  0
                   nil)
 
 (make-remove-test unordered-one
@@ -279,7 +283,9 @@
                    "- element1"
                    ":END:")
                   "resources"
-                  '("element1")
+                  "element1"
+                  nil
+                  1
                   nil)
 
 (make-remove-test unordered-many
@@ -294,8 +300,29 @@
                    "- element3"
                    ":END:")
                   "resources"
-                  '("element1")
+                  "element1"
+                  nil
+                  2
                   '("element2"
+                    "element3"))
+
+(make-remove-test unordered-many-complex
+                  ("* Some heading"
+                   ":PROPERTIES:"
+                   ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                   ":END:"
+                   ":RESOURCES:"
+                   "1. element1"
+                   "2. element2 - delete"
+                   "3. element1 - delete"
+                   "4. element3"
+                   "5. element4 - delete"
+                   ":END:")
+                  "resources"
+                  "delete"
+                  'string-suffix-p
+                  3
+                  '("element1"
                     "element3"))
 
 (make-remove-test ordered-many
@@ -310,7 +337,9 @@
                    "4. element3"
                    ":END:")
                   "resources"
-                  '("element1")
+                  "element1"
+                  nil
+                  2
                   '("element2"
                     "element3"))
 

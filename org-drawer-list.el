@@ -83,8 +83,10 @@ used."
      value)))
 
 ;;;###autoload
-(defun org-drawer-list-remove (name value)
-  "Remove a VALUE from the list under the drawer with NAME."
+(defun org-drawer-list-remove (name value &optional testfn)
+  "Remove elements of NAME that are equal to VALUE.
+
+Equality is defined by TESTFN if non-nil or by `equal' if nil."
   (org-drawer-list-block
    name t t
    (lambda (range)
@@ -104,15 +106,15 @@ used."
            (let ((beg (car struct))
                  (end (- (car (last struct)) 1))
                  (prefix (nth 2 struct)))
-             (string-match-p
-              value
-              (replace-regexp-in-string
-               "\n" ""
-               (replace-regexp-in-string
-                "^ +" " "
-                (string-remove-prefix
-                 prefix
-                 (buffer-substring-no-properties beg end)))))))
+             (funcall (or testfn #'equal)
+                      value
+                      (replace-regexp-in-string
+                       "\n" ""
+                       (replace-regexp-in-string
+                        "^ +" " "
+                        (string-remove-prefix
+                         prefix
+                         (buffer-substring-no-properties beg end)))))))
          (org-element-property :structure (org-element-at-point)))))))))
 
 ;;;###autoload
