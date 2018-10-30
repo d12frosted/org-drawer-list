@@ -2,9 +2,80 @@
 
 [[http://spacemacs.org][file:https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]] [[https://circleci.com/gh/d12frosted/org-drawer-list][file:https://circleci.com/gh/d12frosted/org-drawer-list.svg?style=svg]]
 
-Small utility program for dealing with lists in an =org-mode= drawer.
+Small utility library for dealing with lists in an =org-mode= drawer. This
+library provides the following functions:
 
-More information will be available soon™, once the initial development is over.
+- =org-drawer-list= - returns the content of the named drawer as a list;
+- =org-drawer-list-add= - adds the value to the list under the named drawer;
+- =org-drawer-list-remove= - removes the value from the list under the named
+  drawer;
+- =org-drawer-list-block= - returns the region of the named drawer; when asked
+  creates a missing drawer.
+
+Every function works also in the agenda buffer.
+
+Please refer to each function's documentation for more information.
+
+** User story
+
+Imagine that you want to maintain a list of resources for each heading. One of
+the possible ways to organise it is to use custom drawers.
+
+#+BEGIN_SRC org
+  ,* fancy topic
+  :RESOURCES:
+  - resource one
+  - resource two
+  :END:
+#+END_SRC
+
+Easy and straight-forward. But manually updating this list is tedious, because
+manual work is tedious. And it doesn't scale. Especially if you wish to write a
+program that leverages lists in custom drawers.
+
+That's where =org-drawer-list= comes to the rescue!
+
+*** Getting the list of resources
+
+#+BEGIN_SRC emacs-lisp
+  (org-drawer-list "resources")           ; => ("resource one" "resource two")
+#+END_SRC
+
+*** Adding resource
+
+#+BEGIN_SRC emacs-lisp
+  (org-drawer-list-add "resources" "resource three")           ; => "resource three"
+#+END_SRC
+
+#+BEGIN_SRC org
+  ,* fancy topic
+  :RESOURCES:
+  - resource one
+  - resource two
+  - resource three
+  :END:
+#+END_SRC
+
+*** Removing resource
+
+#+BEGIN_SRC emacs-lisp
+  (org-drawer-list-remove "resources" "resource three")           ; => 1
+#+END_SRC
+
+#+BEGIN_SRC org
+  ,* fancy topic
+  :RESOURCES:
+  - resource one
+  - resource two
+  :END:
+#+END_SRC
+
+** Installation
+
+Currently, this package is not available on MELPA, so you'll have to manually
+install it.
+
+No instructions for now.
 
 ** Testing
 
@@ -29,5 +100,6 @@ Now you can run tests.
 #+END_SRC
 
 ** Contributing
+
 Let me know if you have any issues, ideas or proposals. Pull requests are
 welcome!

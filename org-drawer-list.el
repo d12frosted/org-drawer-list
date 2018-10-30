@@ -17,6 +17,19 @@
 
 ;;; Commentary:
 ;;
+;; Small utility library for dealing with lists in an `org-mode' drawer. This
+;; library provides the following functions:
+;;
+;; - `org-drawer-list' - returns the content of the named drawer as a list.
+;; - `org-drawer-list-add' - adds the value to the list under the named drawer.
+;; - `org-drawer-list-remove' - removes the value from the list under the named
+;;   drawer.
+;; - `org-drawer-list-block' - returns the region of the named drawer; when
+;;   asked creates a missing drawer
+;;
+;; Every function works also in the agenda buffer.
+;;
+;; Please refer to each function's documentation for more information.
 
 ;;; Code:
 ;;
@@ -47,7 +60,7 @@
       (org-element-property :structure (org-element-at-point))))))
 
 (defun org-drawer-list-add (name value)
-  "Add a VALUE to drawer with NAME."
+  "Add a VALUE to the list under the drawer with NAME."
   (org-drawer-list-block
    name t t
    (lambda (range)
@@ -60,7 +73,7 @@
      value)))
 
 (defun org-drawer-list-remove (name value)
-  "Add a VALUE to drawer with NAME."
+  "Remove a VALUE from the list under the drawer with NAME."
   (org-drawer-list-block
    name t t
    (lambda (range)
