@@ -39,6 +39,7 @@
 (defvar org-drawer-list-prefix "- "
   "Prefix for list elements.")
 
+;;;###autoload
 (defun org-drawer-list (name)
   "Return the content of the NAME drawer as list.
 
@@ -61,6 +62,7 @@ List prefix must be supported by `org-mode'."
              (buffer-substring-no-properties beg end))))))
       (org-element-property :structure (org-element-at-point))))))
 
+;;;###autoload
 (defun org-drawer-list-add (name value)
   "Add a VALUE to the list under the drawer with NAME.
 
@@ -78,6 +80,7 @@ used."
      (insert value)
      value)))
 
+;;;###autoload
 (defun org-drawer-list-remove (name value)
   "Remove a VALUE from the list under the drawer with NAME."
   (org-drawer-list-block
@@ -110,6 +113,7 @@ used."
                  (buffer-substring-no-properties beg end)))))))
          (org-element-property :structure (org-element-at-point)))))))))
 
+;;;###autoload
 (defun org-drawer-list-block (name &optional create inside body)
   "Return the (beg . end) range of the NAME drawer.
 
