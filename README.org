@@ -16,6 +16,10 @@ Every function works also in the agenda buffer.
 
 Please refer to each function's documentation for more information.
 
+** Projects using this library
+
+- [[https://github.com/d12frosted/orgability][orgability]] - reading list manager for Emacs with offline access support
+
 ** User story
 
 Imagine that you want to maintain a list of resources for each heading. One of
