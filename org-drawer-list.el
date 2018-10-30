@@ -113,7 +113,11 @@ Example result with INSIDE being non-nil:
 :NAME:
 |- val1
 - val2
-|:END:"
+|:END:
+
+If BODY is non-nil, `org-drawer-list-block' returns the result of
+applying BODY to the (beg . end) range. Note that the BODY is
+called only when the (beg. end) exists."
   (org-drawer-list--with-entry
    (unless (org-before-first-heading-p)
      (org-back-to-heading t)
