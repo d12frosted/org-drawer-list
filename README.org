@@ -75,7 +75,14 @@ That's where =org-drawer-list= comes to the rescue!
 Currently, this package is not available on MELPA, so you'll have to manually
 install it.
 
-No instructions for now.
+*** =use-package= + =quelpa=
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-drawer-list
+    :quelpa (org-drawer-list
+             :fetcher github
+             :repo "d12frosted/org-drawer-list"))
+#+END_SRC
 
 ** Testing
 
