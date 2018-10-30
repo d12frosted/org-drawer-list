@@ -40,7 +40,9 @@
   "Prefix for list elements.")
 
 (defun org-drawer-list (name)
-  "Return the content of the NAME drawer as list."
+  "Return the content of the NAME drawer as list.
+
+List prefix must be supported by `org-mode'."
   (org-drawer-list-block
    name nil t
    (lambda (range)
@@ -60,7 +62,11 @@
       (org-element-property :structure (org-element-at-point))))))
 
 (defun org-drawer-list-add (name value)
-  "Add a VALUE to the list under the drawer with NAME."
+  "Add a VALUE to the list under the drawer with NAME.
+
+When the list is empty, value will be added with
+`org-drawer-list-prefix'. Otherwise, current prefix will be
+used."
   (org-drawer-list-block
    name t t
    (lambda (range)
