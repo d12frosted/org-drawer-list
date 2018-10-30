@@ -42,13 +42,15 @@ That's where =org-drawer-list= comes to the rescue!
 *** Getting the list of resources
 
 #+BEGIN_SRC emacs-lisp
-  (org-drawer-list "resources")           ; => ("resource one" "resource two")
+  (org-drawer-list "resources")
+  ;; => ("resource one" "resource two")
 #+END_SRC
 
 *** Adding resource
 
 #+BEGIN_SRC emacs-lisp
-  (org-drawer-list-add "resources" "resource three")           ; => "resource three"
+  (org-drawer-list-add "resources" "resource three")
+  ;; => "resource three"
 #+END_SRC
 
 #+BEGIN_SRC org
@@ -63,7 +65,8 @@ That's where =org-drawer-list= comes to the rescue!
 *** Removing resource
 
 #+BEGIN_SRC emacs-lisp
-  (org-drawer-list-remove "resources" "resource three")           ; => 1
+  (org-drawer-list-remove "resources" "resource three")
+  ;; => 1
 #+END_SRC
 
 #+BEGIN_SRC org
