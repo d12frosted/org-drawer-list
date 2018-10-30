@@ -71,6 +71,21 @@
                 ,point-location
                 ,create
                 ,inside)
+     (make-list-test drawer-invalid
+                ("{* Some heading"
+                 ":PROPERTIES:"
+                 ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                 ":END:"
+                 "<:RESOURCES:"
+                 "≤one"
+                 "two"
+                 "≥:END:>}")
+                "RESOURCES"
+                nil
+                ,drawer-name-case
+                ,point-location
+                ,create
+                ,inside)
      (make-list-test drawer-1
                 ("{* Some heading"
                  ":PROPERTIES:"
