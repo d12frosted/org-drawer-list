@@ -48,9 +48,7 @@
                        ,drawer-name
                        ,create
                        ,inside)))
-       (should (equal ,(if (null result)
-                           nil
-                         `',result)
+       (should (equal ,result
                       (org-drawer-list ,drawer-name))))))
 
 (defun make-list-test-name (name
@@ -81,10 +79,8 @@
        (org-mode)
        (insert (string-join ',input "\n"))
        (seq-map (lambda (value) (org-drawer-list-add ,drawer-name value))
-                ',elements-to-add)
-       (should (equal ,(if (null result)
-                           nil
-                         `',result)
+                ,elements-to-add)
+       (should (equal ,result
                       (org-drawer-list ,drawer-name))))))
 
 (defmacro make-remove-test (name
@@ -99,10 +95,8 @@
        (org-mode)
        (insert (string-join ',input "\n"))
        (seq-map (lambda (value) (org-drawer-list-remove ,drawer-name value))
-                ',elements-to-remove)
-       (should (equal ,(if (null result)
-                           nil
-                         `',result)
+                ,elements-to-remove)
+       (should (equal ,result
                       (org-drawer-list ,drawer-name))))))
 
 (defmacro make-contains-test (name
