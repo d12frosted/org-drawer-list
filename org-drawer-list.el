@@ -185,10 +185,8 @@ called only when the (beg. end) exists."
            (end-of-line)
            (open-line 1)
            (forward-line 1)
-           (indent-for-tab-command)
-           (insert ":" (upcase name) ":\n")
-           (indent-for-tab-command)
-           (insert ":END:")
+           (insert ":" (upcase name) ":\n:END:")
+           (when (eobp) (insert "\n"))
            (org-drawer-list-block name nil inside body)))))))
 
 (defmacro org-drawer-list--with-entry (&rest body)

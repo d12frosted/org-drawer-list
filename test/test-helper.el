@@ -70,7 +70,8 @@
                          input
                          drawer-name
                          elements-to-add
-                         result)
+                         result
+                         output)
   `(ert-deftest
        ,(intern (format "org-drawer-list-add|%s|test" name))
        ()
@@ -80,7 +81,14 @@
        (seq-map (lambda (value) (org-drawer-list-add ,drawer-name value))
                 ,elements-to-add)
        (should (equal ,result
-                      (org-drawer-list ,drawer-name))))))
+                      (org-drawer-list ,drawer-name)))
+       (should (equal (string-join ',output "\n")
+                      (org-drawer-list-block
+                       ,drawer-name nil nil
+                       (lambda (range)
+                         (buffer-substring-no-properties
+                          (car range)
+                          (cdr range)))))))))
 
 (defmacro make-remove-test (name
                             input

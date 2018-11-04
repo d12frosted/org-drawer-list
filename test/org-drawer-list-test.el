@@ -199,13 +199,19 @@
                 ":END:")
                "resources"
                '("element1")
-               '("element1"))
+               '("element1")
+               (":RESOURCES:"
+                "- element1"
+                ":END:"))
 
 (make-add-test unordered-missing|no-properties
                ("* Some heading")
                "resources"
                '("element1")
-               '("element1"))
+               '("element1")
+               (":RESOURCES:"
+                "- element1"
+                ":END:"))
 
 (make-add-test unordered-empty
                ("* Some heading"
@@ -216,7 +222,24 @@
                 ":END:")
                "resources"
                '("element1")
-               '("element1"))
+               '("element1")
+               (":RESOURCES:"
+                "- element1"
+                ":END:"))
+
+(make-add-test unordered-empty-no-case-change
+               ("* Some heading"
+                ":PROPERTIES:"
+                ":ID: 8366A66A-2DE6-401B-AF7F-0C03C33EA3BB"
+                ":END:"
+                ":resources:"
+                ":end:")
+               "resources"
+               '("element1")
+               '("element1")
+               (":resources:"
+                "- element1"
+                ":end:"))
 
 (make-add-test unordered
                ("* Some heading"
@@ -232,7 +255,13 @@
                '("element3")
                '("element1 is a multiple lines element"
                  "element2"
-                 "element3"))
+                 "element3")
+               (":RESOURCES:"
+                "- element1 is a multiple"
+                "  lines element"
+                "- element2"
+                "- element3"
+                ":END:"))
 
 (make-add-test ordered
                ("* Some heading"
@@ -241,14 +270,20 @@
                 ":END:"
                 ":RESOURCES:"
                 "1. element1 is a multiple"
-                "  lines element"
+                "   lines element"
                 "2. element2"
                 ":END:")
                "resources"
                '("element3")
                '("element1 is a multiple lines element"
                  "element2"
-                 "element3"))
+                 "element3")
+               (":RESOURCES:"
+                "1. element1 is a multiple"
+                "   lines element"
+                "2. element2"
+                "3. element3"
+                ":END:"))
 
 (make-remove-test unordered-missing
                   ("* Some heading"
