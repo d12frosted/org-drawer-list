@@ -6,7 +6,7 @@
 
 (files "org-drawer-list*.el")
 
-(depends-on "emacs" "25.1")
+(depends-on "emacs" "26.1")
 (depends-on "org" "9.0.1")
 
 (development
