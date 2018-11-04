@@ -177,3 +177,47 @@
           (list item-from-a item-from-b)))
       b))
    a))
+
+;; Compatibility
+;; https://github.com/rejeep/ert-runner.el/issues/49
+(defun ert--print-backtrace (backtrace do-xrefs)
+  "Format the backtrace BACKTRACE to the current buffer."
+  (let ((print-escape-newlines t)
+        (print-level 8)
+        (print-length 50))
+    (debugger-insert-backtrace backtrace do-xrefs)))
+
+;; Compatibility
+;; https://github.com/rejeep/ert-runner.el/issues/49
+(defun debugger-insert-backtrace (frames do-xrefs)
+   "Format and insert the backtrace FRAMES at point.
+ Make functions into cross-reference buttons if DO-XREFS is non-nil."
+   (let ((standard-output (current-buffer))
+         (eval-buffers eval-buffer-list))
+     (require 'help-mode)     ; Define `help-function-def' button type.
+     (pcase-dolist (`(,evald ,fun ,args ,flags) frames)
+       (insert (if (plist-get flags :debug-on-exit)
+                   "* " "  "))
+       (let ((fun-file (and do-xrefs (symbol-file fun 'defun)))
+             (fun-pt (point)))
+         (cond
+          ((and evald (not debugger-stack-frame-as-list))
+           (debugger--print fun)
+           (if args (debugger--print args) (princ "()")))
+          (t
+           (debugger--print (cons fun args))
+           (cl-incf fun-pt)))
+         (when fun-file
+           (make-text-button fun-pt (+ fun-pt (length (symbol-name fun)))
+                             :type 'help-function-def
+                             'help-args (list fun fun-file))))
+       ;; After any frame that uses eval-buffer, insert a line that
+       ;; states the buffer position it's reading at.
+       (when (and eval-buffers (memq fun '(eval-buffer eval-region)))
+         (insert (format "  ; Reading at buffer position %d"
+                         ;; This will get the wrong result if there are
+                         ;; two nested eval-region calls for the same
+                         ;; buffer.  That's not a very useful case.
+                         (with-current-buffer (pop eval-buffers)
+                           (point)))))
+       (insert "\n"))))
