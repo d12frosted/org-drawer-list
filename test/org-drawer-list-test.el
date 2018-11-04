@@ -294,7 +294,9 @@
                   "element1"
                   nil
                   0
-                  nil)
+                  nil
+                  (":RESOURCES:"
+                   ":END:"))
 
 (make-remove-test unordered-empty
                   ("* Some heading"
@@ -307,7 +309,9 @@
                   "element1"
                   nil
                   0
-                  nil)
+                  nil
+                  (":RESOURCES:"
+                   ":END:"))
 
 (make-remove-test unordered-one
                   ("* Some heading"
@@ -321,7 +325,9 @@
                   "element1"
                   nil
                   1
-                  nil)
+                  nil
+                  (":RESOURCES:"
+                   ":END:"))
 
 (make-remove-test unordered-many
                   ("* Some heading"
@@ -339,7 +345,11 @@
                   nil
                   2
                   '("element2"
-                    "element3"))
+                    "element3")
+                  (":RESOURCES:"
+                   "- element2"
+                   "- element3"
+                   ":END:"))
 
 (make-remove-test unordered-many-complex
                   ("* Some heading"
@@ -358,7 +368,11 @@
                   'string-suffix-p
                   3
                   '("element1"
-                    "element3"))
+                    "element3")
+                  (":RESOURCES:"
+                   "1. element1"
+                   "2. element3"
+                   ":END:"))
 
 (make-remove-test ordered-many
                   ("* Some heading"
@@ -376,7 +390,11 @@
                   nil
                   2
                   '("element2"
-                    "element3"))
+                    "element3")
+                  (":RESOURCES:"
+                   "1. element2"
+                   "2. element3"
+                   ":END:"))
 
 (make-contains-test missing
                     ("* Some heading"

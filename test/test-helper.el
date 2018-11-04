@@ -96,7 +96,8 @@
                             elt
                             testfn
                             count
-                            result)
+                            result
+                            output)
   `(ert-deftest
        ,(intern (format "org-drawer-list-remove|%s|test" name))
        ()
@@ -106,7 +107,14 @@
        (should (equal ,count
                       (org-drawer-list-remove ,drawer-name ,elt ,testfn)))
        (should (equal ,result
-                      (org-drawer-list ,drawer-name))))))
+                      (org-drawer-list ,drawer-name)))
+       (should (equal (string-join ',output "\n")
+                      (org-drawer-list-block
+                       ,drawer-name nil nil
+                       (lambda (range)
+                         (buffer-substring-no-properties
+                          (car range)
+                          (cdr range)))))))))
 
 (defmacro make-contains-test (name
                               input
