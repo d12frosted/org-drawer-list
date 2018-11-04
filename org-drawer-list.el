@@ -125,7 +125,7 @@ Equality is defined by TESTFN if non-nil or by `equal' if nil."
   (seq-contains (org-drawer-list name) elt (or testfn #'equal)))
 
 ;;;###autoload
-(defun org-drawer-list-block (name &optional create inside body)
+(defun org-drawer-list-block (name &optional create inside fn)
   "Return the (beg . end) range of the NAME drawer.
 
 NAME is case insensitive.
@@ -149,9 +149,9 @@ Example result with INSIDE being non-nil:
 - val2
 |:END:
 
-If BODY is non-nil, `org-drawer-list-block' returns the result of
-applying BODY to the (beg . end) range. Note that the BODY is
-called only when the (beg. end) exists."
+If FN is non-nil, `org-drawer-list-block' returns the result of
+applying FN to the (beg . end) range. Note that the FN is called
+only when the (beg. end) exists."
   (org-drawer-list--with-entry
    (unless (org-before-first-heading-p)
      (org-back-to-heading t)
@@ -175,8 +175,8 @@ called only when the (beg. end) exists."
                        (line-end-position)))))
        (if (and (not (null beg))
                 (not (null end)))
-           (if body
-               (funcall body (cons beg end))
+           (if fn
+               (funcall fn (cons beg end))
              (cons beg end))
          (when create
            (if-let ((property-block (org-get-property-block)))
@@ -187,7 +187,7 @@ called only when the (beg. end) exists."
            (forward-line 1)
            (insert ":" (upcase name) ":\n:END:")
            (when (eobp) (insert "\n"))
-           (org-drawer-list-block name nil inside body)))))))
+           (org-drawer-list-block name nil inside fn)))))))
 
 (defmacro org-drawer-list--with-entry (&rest body)
   "Move to buffer and point of current entry for the duration of BODY."
