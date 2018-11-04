@@ -32,24 +32,23 @@
          ('beginning (place-cursor-beginning))
          ('end (place-cursor-end))
          ('random (place-cursor-random)))
-       (setq drawer-name
-             (pcase ',drawer-name-case
-               ('lower (downcase ,drawer-name))
-               ('upper (upcase ,drawer-name))
-               ('random (randomcase ,drawer-name))))
-       (should (equal (if ,inside
+       (let ((drawer-name (pcase ',drawer-name-case
+                            ('lower (downcase ,drawer-name))
+                            ('upper (upcase ,drawer-name))
+                            ('random (randomcase ,drawer-name)))))
+         (should (equal (if ,inside
+                            (progn
+                              (get-block-range "<" ">")
+                              (get-block-range "≤" "≥"))
                           (progn
-                            (get-block-range "<" ">")
-                            (get-block-range "≤" "≥"))
-                        (progn
-                          (get-block-range "≤" "≥")
-                          (get-block-range "<" ">")))
-                      (org-drawer-list-block
-                       ,drawer-name
-                       ,create
-                       ,inside)))
-       (should (equal ,result
-                      (org-drawer-list ,drawer-name))))))
+                            (get-block-range "≤" "≥")
+                            (get-block-range "<" ">")))
+                        (org-drawer-list-block
+                         drawer-name
+                         ,create
+                         ,inside)))
+         (should (equal ,result
+                        (org-drawer-list ,drawer-name)))))))
 
 (defun make-list-test-name (name
                             drawer-name-case
