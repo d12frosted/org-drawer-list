@@ -124,6 +124,13 @@ Equality is defined by TESTFN if non-nil or by `equal' if nil."
 Equality is defined by TESTFN if non-nil or by `equal' if nil."
   (seq-contains (org-drawer-list name) elt (or testfn #'equal)))
 
+(defmacro org-drawer-list--with-entry (&rest body)
+  "Move to buffer and point of current entry for the duration of BODY."
+  `(cond ((eq major-mode 'org-mode)
+          (org-with-point-at (point) ,@body))
+         ((eq major-mode 'org-agenda-mode)
+          (org-agenda-with-point-at-orig-entry nil ,@body))))
+
 ;;;###autoload
 (defun org-drawer-list-block (name &optional create inside fn)
   "Return the (beg . end) range of the NAME drawer.
@@ -188,13 +195,6 @@ only when the (beg. end) exists."
            (insert ":" (upcase name) ":\n:END:")
            (when (eobp) (insert "\n"))
            (org-drawer-list-block name nil inside fn)))))))
-
-(defmacro org-drawer-list--with-entry (&rest body)
-  "Move to buffer and point of current entry for the duration of BODY."
-  `(cond ((eq major-mode 'org-mode)
-          (org-with-point-at (point) ,@body))
-         ((eq major-mode 'org-agenda-mode)
-          (org-agenda-with-point-at-orig-entry nil ,@body))))
 
 (provide 'org-drawer-list)
 
