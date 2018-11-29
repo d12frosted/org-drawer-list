@@ -37,6 +37,9 @@
 ;;
 
 (require 'org)
+(require 'org-agenda)
+(require 'seq)
+(require 'subr-x)
 
 (defvar org-drawer-list-prefix "- "
   "Prefix for list elements.")
