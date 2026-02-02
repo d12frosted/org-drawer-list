@@ -1,3 +1,9 @@
+#+begin_html
+<p align="center">
+  <a href="https://github.com/sponsors/d12frosted"><img alt="Sponsor" src="https://img.shields.io/badge/Sponsor-d12frosted-pink?logo=githubsponsors&logoColor=white"/></a>
+</p>
+#+end_html
+
 * =org-drawer-list=
 
 [[https://gitlab.com/d12frosted/org-drawer-list/commits/master][file:https://gitlab.com/d12frosted/org-drawer-list/badges/master/pipeline.svg]]
@@ -146,3 +152,7 @@ outside of GitLab, please run the tests manually. For more information please
 refer to relevant section in readme file or contact me via email.
 
 Happy hacking!
+
+* Support
+
+If you enjoy this project, you can support its development via [[https://github.com/sponsors/d12frosted][GitHub Sponsors]] or [[https://www.patreon.com/d12frosted][Patreon]].
